@@ -1,3 +1,7 @@
+Build a Camper Leaderboard
+===
+https://www.freecodecamp.com/challenges/build-a-camper-leaderboard
+
 1. **Objective**: Build a CodePen.io app that is functionally similar to this: https://codepen.io/FreeCodeCamp/full/eZGMjp/.
 
 2. **Rule #1**: Don't look at the example project's code. Figure it out for yourself.
