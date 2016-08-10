@@ -44,12 +44,51 @@
         // temp. just to show data
         document.getElementById('app').innerHTML += "<img src='" + img + "' width='50' height='50'> " + username + " " + recent + " " + alltime + "<br>";
       }
+
       // temp. just to show data
       document.getElementById('app').innerHTML += "<br><br>===<br>"
     }
 
-    getJson(recentUrl, parseJson);
-    getJson(alltimeUrl, parseJson);
+    // getJson(recentUrl, parseJson);
+    // getJson(alltimeUrl, parseJson);
+
+    class Layout extends React.Component {
+      render() {
+        return (
+          <div className="layout">
+          <Title />
+          <TableHeader />
+          </div>
+        );
+      }
+    }
+
+    class Title extends React.Component {
+      render() {
+        return (
+          <div className="title">
+          Leaderboard
+          </div>
+        );
+      }
+    }
+
+    class TableHeader extends React.Component {
+      render() {
+        return (
+          <div className="tableHeader">
+          <div className="cell">#</div>
+          <div className="cell">Camper Name</div>
+          <div className="cell">Points in last 30 days</div>
+          <div className="cell">All time points</div>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <Layout />, document.getElementById('app')
+    );
 
     </script>
 </body>
