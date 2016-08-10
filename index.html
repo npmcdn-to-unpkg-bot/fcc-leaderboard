@@ -7,58 +7,66 @@
     <title>FCC Camper Leaderboard</title>
     <!-- <link href="favicon.ico" rel="icon" type="image/x-icon"> -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
-    <!-- <link rel="stylesheet" href="style/main.css" /> -->
+    <link rel="stylesheet" href="style/main.css" />
     <script src="https://npmcdn.com/react@15.3.0/dist/react.js"></script>
     <script src="https://npmcdn.com/react-dom@15.3.0/dist/react-dom.js"></script>
     <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
 </head>
 
 <body>
-  <div id="app"><div>
+  <div id="app"></div>
     <script type="text/babel">
-    const recentUrl = "https://fcctop100.herokuapp.com/api/fccusers/top/recent";
-    const alltimeUrl = "https://fcctop100.herokuapp.com/api/fccusers/top/alltime";
 
-    function getJson(url, callback) {
+    class Main extends React.Component {
 
-        const request = new XMLHttpRequest();
+      constructor() {
+        console.log("constructor");
+        super();
+        this.state = {data: []};
 
-        request.onreadystatechange = () => {
-          if (request.readyState === 4 && request.status === 200) {
-            callback(request.response);
-          }
-        }
-        request.open("GET", url);
-        request.responseType = "json";
-        request.send();
-    }
-
-    function parseJson(data) {
-
-      for (let i = 0; i < data.length; i++) {
-        const username = data[i].username,
-            img = data[i].img,
-            alltime = data[i].alltime,
-            recent = data[i].recent;
-
-        // temp. just to show data
-        document.getElementById('app').innerHTML += "<img src='" + img + "' width='50' height='50'> " + username + " " + recent + " " + alltime + "<br>";
       }
 
-      // temp. just to show data
-      document.getElementById('app').innerHTML += "<br><br>===<br>"
-    }
+      componentDidMount() {
+        console.log("componentDidMount");
+        const recentUrl = "https://fcctop100.herokuapp.com/api/fccusers/top/recent";
+        const request = new XMLHttpRequest();
+        request.onreadystatechange = () => {
+          if (request.readyState === 4 && request.status === 200) {
+            this.setState({data: request.response})
+          }
+        }
+        request.open("GET", recentUrl);
+        request.responseType = "json";
+        request.send();
+      }
 
-    // getJson(recentUrl, parseJson);
-    // getJson(alltimeUrl, parseJson);
+      render() {
+        console.log("render");
+        console.log(this.state);
+        return (
+          <div>
+          Main component
+          </div>
+        );
+      }
+    }
 
     class Layout extends React.Component {
       render() {
         return (
           <div className="layout">
           <Title />
-          <TableHeader />
+          <Table />
           </div>
+        );
+      }
+    }
+
+    class Table extends React.Component {
+      render() {
+        return (
+          <table>
+          </table>
         );
       }
     }
@@ -86,8 +94,43 @@
       }
     }
 
+    // class TableBody extends React.Component {
+    //   render() {
+    //     const columns = this.props.columns;
+    //     const data = this.props.data;
+    //     return(
+    //       <tbody>
+    //       {data.map((item, idx) => <TableRow key={idx} data={item} columns={columns} />)}
+    //       </tbody>
+    //     );
+    //   }
+    // }
+
+    // class TableRow extends React.Component {
+    //   render() {
+    //     const columns = this.props.columns,
+    //     data = this.props.data,
+    //     td = (item) => {
+    //       columns.map((c, i) => {<td key={i}>{item[c]}</td>}, this)
+    //     }.bind(this);
+    //
+    //     return (
+    //       <tr key={data}>{ td(data) }</tr>
+    //     );
+    //   }
+    // }
+
+    // class Row extends React.Component {
+    //   render() {
+    //     return (
+    //       <div>
+    //       </div>
+    //     );
+    //   }
+    // }
+
     ReactDOM.render(
-      <Layout />, document.getElementById('app')
+      <Main />, document.getElementById('app')
     );
 
     </script>
