@@ -81,41 +81,6 @@
       }
     }
 
-    // class TableBody extends React.Component {
-    //   render() {
-    //     const columns = this.props.columns;
-    //     const data = this.props.data;
-    //     return(
-    //       <tbody>
-    //       {data.map((item, idx) => <TableRow key={idx} data={item} columns={columns} />)}
-    //       </tbody>
-    //     );
-    //   }
-    // }
-
-    // class TableRow extends React.Component {
-    //   render() {
-    //     const columns = this.props.columns,
-    //     data = this.props.data,
-    //     td = (item) => {
-    //       columns.map((c, i) => {<td key={i}>{item[c]}</td>}, this)
-    //     }.bind(this);
-    //
-    //     return (
-    //       <tr key={data}>{ td(data) }</tr>
-    //     );
-    //   }
-    // }
-
-    // class Row extends React.Component {
-    //   render() {
-    //     return (
-    //       <div>
-    //       </div>
-    //     );
-    //   }
-    // }
-
     ReactDOM.render(
       <Main />, document.getElementById('app')
     );
