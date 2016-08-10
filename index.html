@@ -16,6 +16,40 @@
 <body>
   <div id="app"><div>
     <script type="text/babel">
+    const recentUrl = "https://fcctop100.herokuapp.com/api/fccusers/top/recent";
+    const alltimeUrl = "https://fcctop100.herokuapp.com/api/fccusers/top/alltime";
+
+    function getJson(url, callback) {
+
+        const request = new XMLHttpRequest();
+
+        request.onreadystatechange = () => {
+          if (request.readyState === 4 && request.status === 200) {
+            callback(request.response);
+          }
+        }
+        request.open("GET", url);
+        request.responseType = "json";
+        request.send();
+    }
+
+    function parseJson(data) {
+
+      for (let i = 0; i < data.length; i++) {
+        const username = data[i].username,
+            img = data[i].img,
+            alltime = data[i].alltime,
+            recent = data[i].recent;
+
+        // temp. just to show data
+        document.getElementById('app').innerHTML += "<img src='" + img + "' width='50' height='50'> " + username + " " + recent + " " + alltime + "<br>";
+      }
+      // temp. just to show data
+      document.getElementById('app').innerHTML += "<br><br>===<br>"
+    }
+
+    getJson(recentUrl, parseJson);
+    getJson(alltimeUrl, parseJson);
 
     </script>
 </body>
