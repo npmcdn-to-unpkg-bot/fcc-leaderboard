@@ -20,37 +20,32 @@
     class Main extends React.Component {
 
       constructor() {
-        console.log("constructor");
         super();
-        this.state = {data: []};
-
+        this.state = {data: [], url: "recent"};
       }
 
       componentDidMount() {
-        console.log("componentDidMount");
-        const recentUrl = "https://fcctop100.herokuapp.com/api/fccusers/top/recent";
+        this.getJson(this.state.url);
+      }
+
+      getJson(url) {
+        const apiUrl = "https://fcctop100.herokuapp.com/api/fccusers/top/" + url;
         const request = new XMLHttpRequest();
         request.onreadystatechange = () => {
           if (request.readyState === 4 && request.status === 200) {
             this.setState({data: request.response})
           }
         }
-        request.open("GET", recentUrl);
+        request.open("GET", apiUrl);
         request.responseType = "json";
         request.send();
       }
 
-
-
       render() {
-        console.log("render");
-        // console.log(this.state);
-        const data = this.state.data;
-        // console.log(data);
         return (
           <div className="main">
           <Title />
-          <Table data={this.state.data} />
+          <Table data={this.state.data} getJson={this.getJson.bind(this)}/>
           </div>
         );
       }
@@ -59,19 +54,19 @@
     class Table extends React.Component {
 
       generateHead() {
-        console.log("generateHead");
+        const titleRecent = "Points in past 30 days"
+        const titleAll = "All time points"
         return (
           <tr>
           <td>#</td>
           <td colSpan='2'>Username</td>
-          <td id="topRecent">Top30</td>
-          <td id="topAllTime">TopAlltime</td>
+          <td id="topRecent" onClick={() => this.handleClick("recent")}>{titleRecent}</td>
+          <td id="topAllTime" onClick={() => this.handleClick("alltime")}>{titleAll}</td>
           </tr>
         );
       }
 
       generateRows() {
-        console.log("generateRow");
         let rows = [];
         for (let i = 0; i < this.props.data.length; i++) {
           const item = this.props.data[i];
@@ -88,11 +83,16 @@
               <td>{alltime}</td>
               </tr>);
         }
+
         return (
           rows
         );
-
       }
+
+      handleClick(url) {
+        this.props.getJson(url);
+      }
+
       render() {
         const head = this.generateHead();
         const rows = this.generateRows();
