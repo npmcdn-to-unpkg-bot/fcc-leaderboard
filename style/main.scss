@@ -1,1 +1,12 @@
 @import "reset";
+
+.table {
+  border-collapse: collapse;
+  border: 1px solid lightgray;
+}
+tr:nth-child(even) {
+  background: #fff;
+}
+tr:nth-child(odd) {
+  background: #eee;
+}

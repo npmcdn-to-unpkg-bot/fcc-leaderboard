@@ -64,8 +64,8 @@
           <tr>
           <td>#</td>
           <td colSpan='2'>Username</td>
-          <td>Top30</td>
-          <td>TopAlltime</td>
+          <td id="topRecent">Top30</td>
+          <td id="topAllTime">TopAlltime</td>
           </tr>
         );
       }
@@ -80,7 +80,7 @@
             recent = item.recent,
             alltime = item.alltime;
 
-          rows.push(<tr key={i+1}>
+          rows.push(<tr className="table" key={i+1}>
               <td>{i+1}</td>
               <td><img src={img} width='30'/></td>
               <td>{username}</td>
@@ -98,7 +98,7 @@
         const rows = this.generateRows();
 
         return (
-          <table>
+          <table className="table">
           <thead>{head}</thead>
           <tbody>{rows}</tbody>
           </table>
