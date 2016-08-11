@@ -1,13 +1,80 @@
 @import "reset";
 
+.main {
+  text-align: center;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem auto;
+  margin-bottom: 0;
+  padding: 0.5rem;
+  background-color: darkgreen;
+  color: white;
+  max-width: 800px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.nr {
+  width: 3rem;
+}
 .table {
   border-collapse: collapse;
   border: 1px solid lightgray;
-  cursor: default;
+  margin: auto;
+  width: 100%;
+  max-width: 800px;
+  img {
+    border: 1px solid darkgray;
+    border-radius: 2px;
+    width: 2rem;
+    height: 2rem;
+  }
+  thead {
+    tr {
+      background: #eee;
+      height: 3.5rem;
+      font-weight: bold;
+    }
+  }
 }
-tr:nth-child(even) {
-  background: #fff;
+
+.tdRecent, .tdAlltime {
+  width: 12rem;
 }
-tr:nth-child(odd) {
-  background: #eee;
+.username {
+  // width: 50%;
+}
+
+.highlight {
+  background-color: green;
+  color: white;
+  // font-weight: bold;
+}
+
+tr {
+  height: 3rem;
+  td {
+    border: 1px solid lightgray;
+  }
+  .avatar {
+    border-right: 1px solid transparent;
+    vertical-align: middle;
+    width: 4rem;
+  }
+  .username {
+    text-align: left;
+  }
+  &:nth-child(even) {
+    background: #eee;
+  }
+  &:nth-child(odd) {
+    background: #fff;
+  }
 }

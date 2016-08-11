@@ -53,15 +53,22 @@
 
     class Table extends React.Component {
 
+      constructor() {
+        super();
+        this.state = {recent: "highlight", alltime: ""}
+      }
+
       generateHead() {
         const titleRecent = "Points in past 30 days"
         const titleAll = "All time points"
+        const recentClass = `${this.state.recent} tdRecent`;
+        const alltimeClass = `${this.state.alltime} tdAlltime`;
         return (
           <tr>
-          <td>#</td>
+          <td className="nr">#</td>
           <td colSpan='2'>Username</td>
-          <td id="topRecent" onClick={() => this.handleClick("recent")}>{titleRecent}</td>
-          <td id="topAllTime" onClick={() => this.handleClick("alltime")}>{titleAll}</td>
+          <td id="recent" className={recentClass} onClick={() => this.handleClick("recent")}>{titleRecent}</td>
+          <td id="alltime" className={alltimeClass} onClick={() => this.handleClick("alltime")}>{titleAll}</td>
           </tr>
         );
       }
@@ -77,10 +84,10 @@
 
           rows.push(<tr className="table" key={i+1}>
               <td>{i+1}</td>
-              <td><img src={img} width='30'/></td>
-              <td>{username}</td>
-              <td>{recent}</td>
-              <td>{alltime}</td>
+              <td className="avatar"><img src={img} /></td>
+              <td className="username">{username}</td>
+              <td className="tdRecent">{recent}</td>
+              <td className="tdAlltime">{alltime}</td>
               </tr>);
         }
 
@@ -90,7 +97,13 @@
       }
 
       handleClick(url) {
+        const newKey = {
+          [url]: "highlight"
+        }
+
         this.props.getJson(url);
+        this.setState({recent: "", alltime: ""});
+        this.setState(newKey);
       }
 
       render() {
@@ -110,7 +123,7 @@
       render() {
         return (
           <div className="title">
-          Leaderboard
+          FreeCodeCamp Leaderboard
           </div>
         );
       }

@@ -3,15 +3,65 @@
   padding: 0;
   box-sizing: border-box; }
 
+.main {
+  text-align: center;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  cursor: default; }
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem auto;
+  margin-bottom: 0;
+  padding: 0.5rem;
+  background-color: darkgreen;
+  color: white;
+  max-width: 800px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px; }
+
+.nr {
+  width: 3rem; }
+
 .table {
   border-collapse: collapse;
   border: 1px solid lightgray;
-  cursor: default; }
+  margin: auto;
+  width: 100%;
+  max-width: 800px; }
+  .table img {
+    border: 1px solid darkgray;
+    border-radius: 2px;
+    width: 2rem;
+    height: 2rem; }
+  .table thead tr {
+    background: #eee;
+    height: 3.5rem;
+    font-weight: bold; }
 
-tr:nth-child(even) {
-  background: #fff; }
+.tdRecent, .tdAlltime {
+  width: 12rem; }
 
-tr:nth-child(odd) {
-  background: #eee; }
+.highlight {
+  background-color: green;
+  color: white; }
+
+tr {
+  height: 3rem; }
+  tr td {
+    border: 1px solid lightgray; }
+  tr .avatar {
+    border-right: 1px solid transparent;
+    vertical-align: middle;
+    width: 4rem; }
+  tr .username {
+    text-align: left; }
+  tr:nth-child(even) {
+    background: #eee; }
+  tr:nth-child(odd) {
+    background: #fff; }
 
 /*# sourceMappingURL=main.css.map */
